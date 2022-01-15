@@ -128,7 +128,7 @@ class DualTaskQAGSystem():
                 
             if running_loss < min_loss:
                 min_loss = running_loss
-                torch.save(self, './checkpoints/best_QA.net')
+                torch.save(self.QA_model, './checkpoints/best_QA.pkt')
                 
             running_loss /= self.batch_num
             log_loss.append(running_loss)
@@ -175,7 +175,7 @@ class DualTaskQAGSystem():
                 
             if running_loss < min_loss:
                 min_loss = running_loss
-                torch.save(self, './checkpoints/best_QG.net')
+                torch.save(self.QG_model, './checkpoints/best_QG.pkt')
                 
             running_loss_en /= self.batch_num
             log_loss_en.append(running_loss_en)
@@ -201,8 +201,8 @@ class DualTaskQAGSystem():
     
     
     def load_checkpoints(self, path="./checkpoints/"):
-        self.QA_model = torch.load(path + "best_QA.net")
-        self.QG_model = torch.load(path + "best_QG.net")
+        self.QA_model = torch.load(path + "best_QA.pkt")
+        self.QG_model = torch.load(path + "best_QG.pkt")
     
     
     def train(self):
